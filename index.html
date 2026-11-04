@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A beginner-friendly tool to inspect, clean, and export student CSV datasets.">
+  <title>Student Dataset Cleaning Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="ClearData home">
+        <span class="brand-mark">C</span><span>Clear<span class="brand-light">Data</span></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#overview"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-link" href="#dataset"><span class="nav-icon">▤</span> Dataset</a>
+        <a class="nav-link" href="#cleaning"><span class="nav-icon">✧</span> Cleaning tools</a>
+        <a class="nav-link" href="#report"><span class="nav-icon">▥</span> Quality report</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card"><div class="help-icon">?</div><strong>Need a hand?</strong><p>Start with the sample dataset and explore each cleaning step.</p><a href="#guide">Quick guide <span>→</span></a></div>
+        <div class="profile"><div class="avatar">SD</div><div><strong>Student workspace</strong><small>Local session</small></div><span class="profile-dot"></span></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong>Dataset cleaning</strong></div>
+        <div class="top-actions"><span class="local-badge"><i></i> Stored in this browser</span><button class="icon-btn" id="resetTop" title="Reset dataset" aria-label="Reset dataset">↺</button></div>
+      </header>
+
+      <section class="page-heading" id="overview">
+        <div><div class="eyebrow">DATA QUALITY WORKSPACE</div><h1>Student Dataset Cleaning Tool</h1><p>Inspect, improve, and prepare your student data for analysis.</p></div>
+        <div class="heading-actions"><label class="button button-secondary" for="fileInput">＋ Upload CSV</label><button class="button button-primary" id="downloadBtn" disabled>↓ Export cleaned CSV</button><input id="fileInput" type="file" accept=".csv,text/csv" hidden></div>
+      </section>
+
+      <section class="stats-grid" aria-label="Dataset statistics">
+        <article class="stat-card"><div class="stat-top"><span>Total rows</span><span class="stat-icon blue">▤</span></div><strong id="rowCount">—</strong><small><span class="stat-note">Records in dataset</span></small></article>
+        <article class="stat-card"><div class="stat-top"><span>Total columns</span><span class="stat-icon teal">▦</span></div><strong id="colCount">—</strong><small><span class="stat-note">Data attributes</span></small></article>
+        <article class="stat-card"><div class="stat-top"><span>Missing values</span><span class="stat-icon amber">◌</span></div><strong id="missingCount">—</strong><small><span class="stat-note" id="missingHint">Blank or empty cells</span></small></article>
+        <article class="stat-card"><div class="stat-top"><span>Duplicate rows</span><span class="stat-icon violet">⧉</span></div><strong id="duplicateCount">—</strong><small><span class="stat-note">Exact repeated records</span></small></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel dataset-panel" id="dataset">
+          <div class="panel-header"><div><div class="section-kicker">YOUR DATA</div><h2>Dataset preview</h2><p id="datasetSubtitle">A preview of your original dataset</p></div><span class="file-pill" id="fileName">sample-data.csv</span></div>
+          <div class="table-toolbar"><div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search records..." aria-label="Search dataset"></div><div class="table-meta" id="tableMeta">Showing 0 records</div></div>
+          <div class="table-wrap"><table id="dataTable"><thead></thead><tbody></tbody></table></div>
+          <div class="table-footer"><span id="tableFooterText">Load a CSV to get started</span><div class="pager"><button id="prevPage" disabled aria-label="Previous page">‹</button><span id="pageLabel">1 / 1</span><button id="nextPage" disabled aria-label="Next page">›</button></div></div>
+        </article>
+
+        <aside class="panel cleaning-panel" id="cleaning">
+          <div class="panel-header"><div><div class="section-kicker">TAKE ACTION</div><h2>Cleaning tools</h2><p>Choose the operations to apply</p></div><span class="sparkle">✧</span></div>
+          <div class="operation-list">
+            <label class="operation"><input type="checkbox" id="removeDuplicates" checked><span class="checkmark"></span><span class="operation-copy"><strong>Remove duplicates</strong><small>Keep the first copy of each row</small></span><span class="operation-symbol">⧉</span></label>
+            <label class="operation"><input type="checkbox" id="trimSpaces" checked><span class="checkmark"></span><span class="operation-copy"><strong>Trim extra spaces</strong><small>Remove leading and trailing spaces</small></span><span class="operation-symbol">↔</span></label>
+            <label class="operation"><input type="checkbox" id="standardizeText"><span class="checkmark"></span><span class="operation-copy"><strong>Standardize text</strong><small>Normalize text casing</small></span><span class="operation-symbol">Aa</span></label>
+            <label class="operation"><input type="checkbox" id="handleMissing"><span class="checkmark"></span><span class="operation-copy"><strong>Handle missing values</strong><small>Replace blanks with “Not provided”</small></span><span class="operation-symbol">◌</span></label>
+            <label class="operation"><input type="checkbox" id="validateNumbers"><span class="checkmark"></span><span class="operation-copy"><strong>Validate numeric columns</strong><small>Flag values that are not numeric</small></span><span class="operation-symbol">#</span></label>
+          </div>
+          <div class="operation-note"><span>ⓘ</span><p>Cleaning is applied to a working copy. Your original uploaded data stays available until you reset.</p></div>
+          <button class="button button-primary apply-btn" id="applyBtn" disabled>✧ Apply selected operations</button>
+          <button class="button button-quiet" id="resetBtn" disabled>Reset to original data</button>
+        </aside>
+      </section>
+
+      <section class="panel report-panel" id="report">
+        <div class="panel-header report-heading"><div><div class="section-kicker">RESULTS</div><h2>Data quality report</h2><p>Compare your dataset before and after cleaning.</p></div><span class="report-status" id="reportStatus">Waiting for changes</span></div>
+        <div class="report-grid">
+          <div class="report-block"><h3>Before cleaning</h3><div class="quality-line"><span>Rows</span><strong id="beforeRows">—</strong></div><div class="quality-line"><span>Missing values</span><strong id="beforeMissing">—</strong></div><div class="quality-line"><span>Duplicate rows</span><strong id="beforeDuplicates">—</strong></div></div>
+          <div class="report-divider"></div>
+          <div class="report-block"><h3>After cleaning</h3><div class="quality-line"><span>Rows</span><strong id="afterRows">—</strong></div><div class="quality-line"><span>Missing values</span><strong id="afterMissing">—</strong></div><div class="quality-line"><span>Duplicate rows</span><strong id="afterDuplicates">—</strong></div></div>
+          <div class="quality-visual"><div class="quality-ring" id="qualityRing"><div><strong id="qualityScore">—</strong><small>QUALITY SCORE</small></div></div><p id="qualityMessage">Apply a cleaning operation to see your results.</p></div>
+        </div>
+      </section>
+
+      <section class="guide" id="guide"><div class="guide-icon">✦</div><div><strong>New to data cleaning?</strong><p>Upload a CSV, review the data quality indicators, select the operations you need, then apply and export your cleaned file.</p></div><a href="#dataset">Explore dataset ↑</a></section>
+      <footer>ClearData <span>•</span> Student Dataset Cleaning Tool <span class="footer-right">Your files stay in your browser</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+Student ID,Name,Age,Department,Attendance %,Marks,Email
+STU001,Aarav Kumar,19,Computer Science,92,88,aarav@example.com
+STU002,Diya Sharma,20,Information Technology,85,91,diya@example.com
+STU003,Arjun Patel,19,Electronics,78,76,arjun@example.com
+STU004,Meera Iyer,20,Computer Science,96,94,meera@example.com
+STU005,Kabir Singh,21,Mechanical,72,68,kabir@example.com
+STU006,Ananya Rao,19,Information Technology,89,87,ananya@example.com
+STU007,Rohan Das,20,Civil,81,73,rohan@example.com
+STU008,Ishita Nair,19,Computer Science,94,90,ishita@example.com
+STU009,Vihaan Gupta,21,Electronics,67,62,vihaan@example.com
+STU010,Sara Khan,20,Information Technology,88,85,sara@example.com
+STU011,Aditya Menon,19,Mechanical,91,79,aditya@example.com
+STU012,Kiara Joshi,20,Civil,76,81,kiara@example.com
+STU013,Neil Thomas,21,Computer Science,84,77,neil@example.com
+STU014,Tara Reddy,19,Electronics,97,96,tara@example.com
+STU015,Dev Shah,20,Information Technology,69,71,dev@example.com
+STU016,Myra Bose,19,Mechanical,87,89,myra@example.com
+STU017,Reyansh Roy,21,Civil,80,74,reynash@example.com
+STU018,Avni Kulkarni,20,Computer Science,93,92,avni@example.com
+STU019,Krish Verma,19,Electronics,75,66,krish@example.com
+STU020,Anika Paul,20,Information Technology,90,86,anika@example.com
+STU021,Parth Jain,21,Computer Science,82,80,parth@example.com
+STU022,Navya Pillai,19,Civil,95,93,navya@example.com
+STU023,Omkar Sethi,20,Mechanical,,78,omkar@example.com
+STU024,Leela George,19,Information Technology,86,,leela@example.com
+STU025, Kabir Singh ,21,Mechanical,72,68,kabir@example.com
